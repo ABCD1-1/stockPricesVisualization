@@ -17,6 +17,15 @@ if "--signs" in user_inputs:
     if "," in signs:
         signs = signs.split(',')
 
+if "--start" in user_inputs:
+    startIndex = user_inputs.index("--start")
+    start = user_inputs[startIndex + 1]
+
+if "--end" in user_inputs:
+    endIndex = user_inputs.index("--end")
+    end = user_inputs[endIndex + 1]
+
+
 df = web.DataReader(signs, 'yahoo', start=start, end=end)
 
 if not isinstance(signs, list):
@@ -40,13 +49,6 @@ if "--agg" in user_inputs:
     agg = user_inputs[aggIndex + 1]
     assert(agg in ['W', 'M', 'Y', 'all'])
 
-if "--start" in user_inputs:
-    startIndex = user_inputs.index("--start")
-    start = user_inputs[startIndex + 1]
-
-if "--end" in user_inputs:
-    endIndex = user_inputs.index("--end")
-    end = user_inputs[endIndex + 1]
 
 if "--help" in user_inputs:
     print("""Any command that does not respect these conditions is expected to fail.
